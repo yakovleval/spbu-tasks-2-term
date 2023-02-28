@@ -26,12 +26,6 @@ namespace _1._2
     }
     class Program
     {
-        static string RotateString(string str, int position)
-        {
-            return str.Substring(position, str.Length - position) +
-                str.Substring(0, position);
-        }
-
         static (string, int) Bwt(string str)
         {
             int[] rotations = new int[str.Length];
