@@ -47,13 +47,13 @@ namespace _1._2
         {
             string str = bwtResult.Item1;
             int index = bwtResult.Item2;
-            var count = new int[26];
+            var count = new int[1 << 16];
             for (int i = 0; i < str.Length; i++)
             {
-                count[str[i] - 'a']++;
+                count[str[i]]++;
             }
             int sum = 0;
-            for (int i = 0; i < str.Length; i++)
+            for (int i = 0; i < count.Length; i++)
             {
                 sum += count[i];
                 count[i] = sum - count[i];
@@ -61,8 +61,8 @@ namespace _1._2
             int[] reverseBwtVector = new int[str.Length];
             for (int i = 0; i < str.Length; i++)
             {
-                reverseBwtVector[count[str[i] - 'a']] = i;
-                count[str[i] - 'a']++;
+                reverseBwtVector[count[str[i]]] = i;
+                count[str[i]]++;
             }
             var sb = new StringBuilder();
             int next = reverseBwtVector[index];
