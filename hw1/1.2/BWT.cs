@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace _1._2
+namespace hw1task2
 {
     internal class RotationsComparer : IComparer<int>
     {
