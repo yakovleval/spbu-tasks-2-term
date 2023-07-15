@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="..\..\..\hw1\1.2\BWT.cs" Link="BWT.cs" />
+    <Compile Include="..\..\..\hw2\hw2task1\hw2task1\Trie.cs" Link="Trie.cs" />
+  </ItemGroup>
+
 </Project>
