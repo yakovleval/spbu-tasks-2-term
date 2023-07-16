@@ -1,43 +1,69 @@
 ﻿namespace hw2task1
 {
+    /// <summary>
+    /// search tree, key-value data structure with string keys and integer values
+    /// </summary>
     public class Trie
     {
-        private Node root;
-        public int Size { get { return HowManyStartsWithPrefix(""); } }
-
-        public Trie()
+        private class Node
         {
-            root = new Node();
+            public Dictionary<char, Node> children = new();
+            public bool isKey = false;
+            public int keysNumberInSubtree = 0;
+            public int value = -1;
         }
-
-        public bool Add(string element)
+        private Node root = new();
+        public int Size { get { return root.keysNumberInSubtree; } }
+        /// <summary>
+        /// Initializes a Trie with a given (string, int) dictionary
+        /// </summary>
+        /// <param name="dict">(string, int) dictionary to initialize a Trie with</param>
+        public Trie(Dictionary<string, int> dict)   
         {
-            if (Contains(element))
+            foreach(var (key, value) in dict)
+            {
+                this.Add(key, value);
+            }
+        }
+        /// <summary>
+        /// Adds (key, value) pair to the Trie
+        /// </summary>
+        /// <param name="key">key to add</param>
+        /// <param name="value">corresponding value to add</param>
+        /// <returns>true if the pair was added, false otherwise</returns>
+        public bool Add(string key, int value)
+        {
+            if (Contains(key))
             {
                 return false;
             }
             Node node = root;
-            foreach (char c in element)
+            foreach (char c in key)
             {
                 if (!node.children.ContainsKey(c))
                 {
                     node.children[c] = new Node();
                 }
 
-                node.count++;
+                node.keysNumberInSubtree++;
                 node = node.children[c];
             }
 
-            node.count++;
-            node.isEndOfWord = true;
+            node.keysNumberInSubtree++;
+            node.isKey = true;
+            node.value = value;
             return true;
         }
-
-        public bool Contains(string element)
+        /// <summary>
+        /// searches for a key in Trie
+        /// </summary>
+        /// <param name="key">key to search for</param>
+        /// <returns>true if Trie contains the key, false otherwise</returns>
+        public bool Contains(string key)
         {
             Node node = root;
 
-            foreach (char c in element)
+            foreach (char c in key)
             {
                 if (!node.children.ContainsKey(c))
                 {
@@ -45,29 +71,57 @@
                 }
                 node = node.children[c];
             }
-            return node.isEndOfWord;
+            return node.isKey;
         }
-
-        public bool Remove(string element)
+        /// <summary>
+        /// Gets a value by a given key
+        /// </summary>
+        /// <param name="key">key to find value for</param>
+        /// <returns>a corresponding value of the key</returns>
+        /// <exception cref="KeyNotFoundException">thrown when given key is not found in Trie</exception>
+        public int Get(string key)
         {
-            if (!Contains(element))
+            Node node = root;
+
+            foreach (char c in key)
+            {
+                if (!node.children.ContainsKey(c))
+                {
+                    throw new KeyNotFoundException();
+                }
+                node = node.children[c];
+            }
+            return node.value;
+        }
+        /// <summary>
+        /// removes (key, value) pair from Trie
+        /// </summary>
+        /// <param name="key">key to remove</param>
+        /// <returns>if the corresponding pair was removed</returns>
+        public bool Remove(string key)
+        {
+            if (!Contains(key))
             {
                 return false;
             }
             Node node = root;
 
-            foreach (char c in element)
+            foreach (char c in key)
             {
-                node.count--;
+                node.keysNumberInSubtree--;
                 node = node.children[c];
             }
 
-            node.count--;
+            node.keysNumberInSubtree--;
 
-            node.isEndOfWord = false;
+            node.isKey = false;
             return true;
         }
-
+        /// <summary>
+        /// counts the number of keys starting with a given prefix
+        /// </summary>
+        /// <param name="prefix">prefix to count corresponding keys</param>
+        /// <returns>the number of these keys</returns>
         public int HowManyStartsWithPrefix(string prefix)
         {
             Node node = root;
@@ -82,21 +136,7 @@
                 node = node.children[c];
             }
 
-            return node.count;
-        }
-
-        private class Node
-        {
-            public Dictionary<char, Node> children;
-            public bool isEndOfWord;
-            public int count;
-
-            public Node()
-            {
-                children = new Dictionary<char, Node>();
-                isEndOfWord = false;
-                count = 0;
-            }
+            return node.keysNumberInSubtree;
         }
     }
 }
