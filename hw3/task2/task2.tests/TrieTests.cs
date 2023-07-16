@@ -4,25 +4,6 @@ namespace task2.tests
     public class TrieTests
     {
         [TestMethod]
-        public void TestInitializationByDictionaryAndGet()
-        {
-            Trie trie = new(new Dictionary<string, int>
-            {
-                { "a", 1 }
-            });
-            Assert.AreEqual(trie.Get("a"), 1);
-        }
-
-        [TestMethod]
-        public void TestInitializationByDictionaryAndContains()
-        {
-            Trie trie = new(new Dictionary<string, int>
-            {
-                { "a", 1 }
-            });
-            Assert.IsTrue(trie.Contains("a"));
-        }
-        [TestMethod]
         public void TestAddAndGet()
         {
             Trie trie = new();
@@ -59,27 +40,13 @@ namespace task2.tests
             Assert.ThrowsException<KeyNotFoundException>(() => trie.Get("abc"));
         }
         [TestMethod]
-        public void TestInitializationAndSize()
-        {
-            Trie trie = new(new Dictionary<string, int>
-            {
-                { "a", 1 },
-                { "b", 2 },
-                { "c", 3 },
-                { "d", 4 }
-            });
-            Assert.AreEqual(trie.Size, 4);
-        }
-        [TestMethod]
         public void TestRemoveAndSize()
         {
-            Trie trie = new(new Dictionary<string, int>
-            {
-                { "a", 1 },
-                { "b", 2 },
-                { "c", 3 },
-                { "d", 4 }
-            });
+            Trie trie = new();
+            Assert.IsTrue(trie.Add("a", 1));
+            Assert.IsTrue(trie.Add("b", 2));
+            Assert.IsTrue(trie.Add("c", 3));
+            Assert.IsTrue(trie.Add("d", 4));
             Assert.AreEqual(trie.Size, 4);
             Assert.IsTrue(trie.Remove("a"));
             Assert.IsTrue(trie.Remove("b"));

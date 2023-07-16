@@ -13,19 +13,11 @@
             public int value = -1;
         }
         private Node root = new();
+        /// <summary>
+        /// number of keys in the Trie
+        /// </summary>
         public int Size { get { return root.keysNumberInSubtree; } }
         public Trie() { }
-        /// <summary>
-        /// Initializes a Trie with a given (string, int) dictionary
-        /// </summary>
-        /// <param name="dict">(string, int) dictionary to initialize a Trie with</param>
-        public Trie(Dictionary<string, int> dict)   
-        {
-            foreach(var (key, value) in dict)
-            {
-                this.Add(key, value);
-            }
-        }
         /// <summary>
         /// Adds (key, value) pair to the Trie
         /// </summary>
