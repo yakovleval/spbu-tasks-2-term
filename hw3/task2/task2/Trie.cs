@@ -1,4 +1,4 @@
-﻿namespace hw2task1
+﻿namespace task2
 {
     /// <summary>
     /// search tree, key-value data structure with string keys and integer values
@@ -14,6 +14,7 @@
         }
         private Node root = new();
         public int Size { get { return root.keysNumberInSubtree; } }
+        public Trie() { }
         /// <summary>
         /// Initializes a Trie with a given (string, int) dictionary
         /// </summary>
@@ -116,27 +117,6 @@
 
             node.isKey = false;
             return true;
-        }
-        /// <summary>
-        /// counts the number of keys starting with a given prefix
-        /// </summary>
-        /// <param name="prefix">prefix to count corresponding keys</param>
-        /// <returns>the number of these keys</returns>
-        public int HowManyStartsWithPrefix(string prefix)
-        {
-            Node node = root;
-
-            foreach (char c in prefix)
-            {
-                if (!node.children.ContainsKey(c))
-                {
-                    return 0;
-                }
-
-                node = node.children[c];
-            }
-
-            return node.keysNumberInSubtree;
         }
     }
 }
