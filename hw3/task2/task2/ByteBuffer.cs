@@ -10,7 +10,7 @@ namespace task2
     {
         private byte byteBuffer;
         private FileStream output;
-        private readonly int bufferCapacity = 8;
+        private readonly int BUFFER_CAPACITY = 8;
         private int curBufferSize;
         public ByteBuffer(FileStream output)
         {
@@ -22,10 +22,10 @@ namespace task2
         {
             for (int i = currentCodeLength - 1; i >= 0; i--)
             {
-                int bit = (code >> (i - 1)) % 2;
-                byteBuffer |= (byte)(bit << (bufferCapacity - 1 - curBufferSize));
+                int bit = (code >> i) % 2;
+                byteBuffer |= (byte)(bit << (BUFFER_CAPACITY - 1 - curBufferSize));
                 curBufferSize++;
-                if (curBufferSize == bufferCapacity)
+                if (curBufferSize == BUFFER_CAPACITY)
                     Flush();
             }
         }

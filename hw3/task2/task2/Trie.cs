@@ -18,6 +18,13 @@
         /// </summary>
         public int Size { get { return root.keysNumberInSubtree; } }
         public Trie() { }
+        public void InitializeWithAlphabet()
+        {
+            for (int i = 0; i < 256; i++)
+            {
+                Add(string.Empty + (char)i, i);
+            }
+        }
         /// <summary>
         /// Adds (key, value) pair to the Trie
         /// </summary>
