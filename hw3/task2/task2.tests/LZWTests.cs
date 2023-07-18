@@ -58,7 +58,7 @@ namespace task2.tests
         [TestMethod]
         public void TestCompressAndDecompressLargeArray()
         {
-            byte[] array = File.ReadAllBytes("..\\..\\..\\TestFiles\\book-war-and-peace.txt");
+            byte[] array = File.ReadAllBytes("../../../TestFiles/book-war-and-peace.txt");
             byte[] compressed = LZW.Compress(array);
             byte[] decompressed = LZW.Decompress(compressed);
             Assert.IsTrue(ByteArraysAreIdentical(array, decompressed));
