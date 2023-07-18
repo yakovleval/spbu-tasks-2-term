@@ -18,7 +18,7 @@
         /// </summary>
         public int Size { get { return root.keysNumberInSubtree; } }
         public Trie() { }
-        public void InitializeWithAlphabet()
+        public void InitializeWithAllChars()
         {
             for (int i = 0; i < 256; i++)
             {
@@ -91,7 +91,9 @@
                 }
                 node = node.children[c];
             }
-            return node.value;
+            if (node.isKey)
+                return node.value;
+            throw new KeyNotFoundException();
         }
         /// <summary>
         /// removes (key, value) pair from Trie

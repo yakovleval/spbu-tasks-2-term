@@ -55,5 +55,19 @@ namespace task2.tests
             Assert.AreEqual(trie.Size, 0);
 
         }
+        [TestMethod]
+        public void TestGetPrefixOfExistentKey()
+        {
+            Trie trie = new();
+            trie.Add("abcd", 1);
+            Assert.ThrowsException<KeyNotFoundException>(() => trie.Get("abc"));
+        }
+        [TestMethod]
+        public void TestInitializeWithAllCharsAndSize()
+        {
+            Trie trie = new();
+            trie.InitializeWithAllChars();
+            Assert.AreEqual(256, trie.Size);
+        }
     }
 }

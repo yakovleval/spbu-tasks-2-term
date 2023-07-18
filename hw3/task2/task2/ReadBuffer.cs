@@ -6,19 +6,22 @@ using System.Threading.Tasks;
 
 namespace task2
 {
-    internal class IntegerBuffer
+    public class ReadBuffer
     {
         private int intBuffer;
-        private FileStream input;
+        public byte[] CompressedCodes { get; }
         private byte byteBuffer;
         private int byteBufferSize;
+        private int curPos;
         private readonly int BYTE_BUFFER_CAPACITY = 8;
-        public IntegerBuffer(FileStream input)
+
+        public ReadBuffer(byte[] input)
         {
             intBuffer = 0;
-            this.input = input;
+            CompressedCodes = input;
             byteBuffer = 0;
             byteBufferSize = 0;
+            curPos = 0;
         }
         public int Read(int currentCodeLength)
         {
@@ -28,10 +31,9 @@ namespace task2
                 if (byteBufferSize == 0)
                 {
                     byteBuffer = 0;
-                    int readByte = input.ReadByte();
-                    if (readByte == -1)
+                    if (curPos == CompressedCodes.Length)
                         return -1;
-                    byteBuffer = (byte)readByte;
+                    byteBuffer = CompressedCodes[curPos++];
                     byteBufferSize = BYTE_BUFFER_CAPACITY;
                 }
                 byte nextBit = (byte)((byteBuffer >> (byteBufferSize - 1)) % 2);

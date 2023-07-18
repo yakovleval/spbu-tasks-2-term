@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace task2
 {
-    internal class ByteBuffer
+    public class WriteBuffer
     {
         private byte byteBuffer;
-        private FileStream output;
         private readonly int BUFFER_CAPACITY = 8;
         private int curBufferSize;
-        public ByteBuffer(FileStream output)
+        public List<byte> CompressedBytes { get; }
+        public WriteBuffer()
         {
             this.byteBuffer = 0;
-            this.output = output; 
             this.curBufferSize = 0;
+            CompressedBytes = new();
         }
         public void Write(int code, int currentCodeLength)
         {
@@ -31,9 +31,12 @@ namespace task2
         }
         public void Flush()
         {
-            output.WriteByte(byteBuffer);
-            byteBuffer = 0;
-            curBufferSize = 0;
+            if (curBufferSize != 0)
+            {
+                CompressedBytes.Add(byteBuffer);
+                byteBuffer = 0;
+                curBufferSize = 0;
+            }
         }
     }
 }
