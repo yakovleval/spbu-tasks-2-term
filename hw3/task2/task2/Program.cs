@@ -2,26 +2,56 @@
 {
     internal class Program
     {
+        static readonly string helpMessage = """
+
+            usage: dotnet run [<path to file>] [<option>]
+
+            --c  compress file
+            --u  decompress file (must have '.zipped' extension)
+            """;
         static void Main(string[] args)
         {
-            //string path = args[0];
-            //string key = args[1];
-            //if (key.Equals("-c"))
-            //{
-            //    FileStream input = new FileStream(path, FileMode.Open);
-            //    FileStream output = new FileStream(path + ".zipped", FileMode.OpenOrCreate);
-            //    LZW.Compress(input, output);
-            //    input.Close();
-            //    output.Close();
-            //}
-            //else
-            //{
-            //    FileStream input = new FileStream(path, FileMode.Open);
-            //    FileStream output = new FileStream("Decompressed.txt", FileMode.OpenOrCreate);
-            //    LZW.Decompress(input, output);
-            //    input.Close();
-            //    output.Close();
-            //}
+            if (args.Length != 2)
+            {
+                Console.WriteLine(helpMessage);
+                return;
+            }
+            string path = args[0];
+            string option = args[1];
+            byte[] fileBytes;
+            try
+            {
+                fileBytes = File.ReadAllBytes(path);
+                switch (option)
+                {
+                    case "--c":
+                        Console.WriteLine("compressing...");
+                        byte[] compressedBytes = LZW.Compress(fileBytes);
+                        string compressedFilePath = path + ".zipped";
+                        File.WriteAllBytes(compressedFilePath, compressedBytes);
+                        Console.WriteLine("done! Compression rate: {0:0.00}", 
+                            (double)compressedBytes.Length / fileBytes.Length);
+                        break;
+                    case "--u":
+                        if (!path.EndsWith(".zipped"))
+                            throw new ArgumentException("file does not have '.zipped' extension");
+                        Console.WriteLine("decompressing...");
+                        byte[] decompressedBytes = LZW.Decompress(fileBytes);
+                        string decompressedFilePath = path.Replace(".zipped", string.Empty);
+                        File.WriteAllBytes(decompressedFilePath, decompressedBytes);
+                        Console.WriteLine("done!");
+                        break;
+                    default:
+                        throw new ArgumentException("incorrect option");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+                Console.WriteLine(helpMessage);
+            }
+            
+
         }
     }
 }

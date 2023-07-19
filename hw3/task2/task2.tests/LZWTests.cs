@@ -56,9 +56,9 @@ namespace task2.tests
             Assert.IsTrue(ByteArraysAreIdentical(array, decompressed));
         }
         [TestMethod]
-        public void TestCompressAndDecompressLargeArray()
+        public void TestCompressAndDecompressLargerArray()
         {
-            byte[] array = File.ReadAllBytes("../../../TestFiles/book-war-and-peace.txt");
+            byte[] array = File.ReadAllBytes("../../../TestFiles/video.mp4");
             byte[] compressed = LZW.Compress(array);
             byte[] decompressed = LZW.Decompress(compressed);
             Assert.IsTrue(ByteArraysAreIdentical(array, decompressed));

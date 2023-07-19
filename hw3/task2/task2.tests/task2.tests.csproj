@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="TestFiles\" />
-    <Folder Include="TestResults\" />
   </ItemGroup>
 
 </Project>
