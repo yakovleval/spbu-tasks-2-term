@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace task2
 {
+    /// <summary>
+    /// this class helps to extract codes whose 
+    /// lengths are not necessarily divisible by 8
+    /// from a byte array for further decoding
+    /// </summary>
     public class ReadBuffer
     {
         private int intBuffer;
@@ -23,6 +28,11 @@ namespace task2
             byteBufferSize = 0;
             curPos = 0;
         }
+        /// <summary>
+        /// reads next code from compressed byte array
+        /// </summary>
+        /// <param name="currentCodeLength">bit length of the next code</param>
+        /// <returns>next code from the array</returns>
         public int Read(int currentCodeLength)
         {
             intBuffer = 0;

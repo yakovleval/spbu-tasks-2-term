@@ -1,8 +1,16 @@
 ﻿namespace task2
 {
+    /// <summary>
+    /// Implementation of LZW algorithm
+    /// </summary>
     static public class LZW
     {
         private static readonly int MAX_ENTRIES_NUMBER = 1 << 16;
+        /// <summary>
+        /// compresses a byte array
+        /// </summary>
+        /// <param name="input">byte array to compress</param>
+        /// <returns>compressed array</returns>
         public static byte[] Compress(byte[] input)
         {
             WriteBuffer byteBuffer = new();
@@ -41,6 +49,11 @@
             }
             return byteBuffer.CompressedBytes.ToArray();
         }
+        /// <summary>
+        /// decompresses a byte array
+        /// </summary>
+        /// <param name="input">array to decompress</param>
+        /// <returns>decompressed array</returns>
         public static byte[] Decompress(byte[] input)
         {
             int currentCodeLength = 8;

@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace task2
 {
+    /// <summary>
+    /// this class helps to write codes 
+    /// whose lengths are not necessarily divisible by 8
+    /// to a byte array for further writing to a file
+    /// </summary>
     public class WriteBuffer
     {
         private byte byteBuffer;
@@ -18,6 +23,11 @@ namespace task2
             this.curBufferSize = 0;
             CompressedBytes = new();
         }
+        /// <summary>
+        /// writes code to a byte array
+        /// </summary>
+        /// <param name="code">code to write</param>
+        /// <param name="currentCodeLength">bit length of the code</param>
         public void Write(int code, int currentCodeLength)
         {
             for (int i = currentCodeLength - 1; i >= 0; i--)
@@ -29,6 +39,9 @@ namespace task2
                     Flush();
             }
         }
+        /// <summary>
+        /// writes the remaning bits in the buffer to the array
+        /// </summary>
         public void Flush()
         {
             if (curBufferSize != 0)
