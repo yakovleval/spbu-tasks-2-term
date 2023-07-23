@@ -1,5 +1,5 @@
 name: build-and-test
-on: [push, pull_request, workflow_dispatch]
+on: [push]
 jobs:
   ububtu:
     runs-on: ubuntu-latest
