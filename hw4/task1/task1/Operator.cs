@@ -26,7 +26,7 @@ namespace task1
         public double Evaluate()
         {
             if (leftOperand == null || rightOperand == null)
-                throw new InvalidExpressionException("invalid expression: operator has invalid number of operands");
+                throw new InvalidExpressionException();
             double leftResult = leftOperand.Evaluate();
             double rightResult = rightOperand.Evaluate();
             switch (op)
@@ -48,7 +48,7 @@ namespace task1
         public override string ToString()
         {
             if (leftOperand == null || rightOperand == null)
-                throw new Exception("invalid expression: operator has invalid number of operands");
+                throw new Exception();
             return $"( {op} {leftOperand.ToString()} {rightOperand.ToString()} )";
         }
     }
