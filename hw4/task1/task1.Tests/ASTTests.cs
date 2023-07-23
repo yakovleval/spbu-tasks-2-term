@@ -58,5 +58,18 @@ namespace task1
             AST tree = new("( / ( + 2 (- 1 -1) ) 0 )");
             NUnit.Framework.Assert.Throws<DivideByZeroException>(() => tree.Evaluate());
         }
+        [TestCase("0", ExpectedResult = "0")]
+        [TestCase("-1", ExpectedResult = "-1")]
+        [TestCase("(+ 2 2)", ExpectedResult = "( + 2 2 )")]
+        [TestCase("(* 2 3)", ExpectedResult = "( * 2 3 )")]
+        [TestCase("(* (+ 1 1) 2)", ExpectedResult = "( * ( + 1 1 ) 2 )")]
+        [TestCase("( / ( * 2 (+ 1 1) ) (- 18 16) )", ExpectedResult = "( / ( * 2 ( + 1 1 ) ) ( - 18 16 ) )")]
+        [TestCase("(     / (   - 2 (- 1     -1) ) (+ 2 0))", ExpectedResult = "( / ( - 2 ( - 1 -1 ) ) ( + 2 0 ) )")]
+        public string TestPrintExpression(string expression)
+        {
+            AST tree = new(expression);
+            return tree.ToString();
+
+        }
     }
 }
