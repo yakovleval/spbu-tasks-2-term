@@ -4,7 +4,16 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            while (true)
+            {
+                Console.WriteLine("enter the path to the file:");
+                string? path = Console.ReadLine();
+                if (path == null || !File.Exists(path))
+                {
+                    Console.WriteLine("file doesn't exist");
+                    continue;
+                }
+            }
         }
     }
 }

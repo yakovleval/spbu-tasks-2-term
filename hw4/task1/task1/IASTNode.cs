@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace task1
 {
-    internal interface ASTNode
+    public interface IASTNode
     {
+        double Evaluate();
+        string ToString();
     }
 }
