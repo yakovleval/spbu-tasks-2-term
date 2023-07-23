@@ -9,10 +9,21 @@ using System.Xml.Linq;
 
 namespace task1
 {
+    /// <summary>
+    /// abstract syntax tree data structure for expression evaluation
+    /// </summary>
     public class AST
     {
         private IASTNode root;
 
+        /// <summary>
+        /// recursively builds the tree from given expression
+        /// </summary>
+        /// <param name="expression">expression to build the tree from</param>
+        /// <param name="pos">current position in the expression</param>
+        /// <returns></returns>
+        /// <exception cref="InvalidExpressionException">thrown if syntax of the expression is invalid</exception>
+        /// <exception cref="InvalidOperationException">thrown if operation is invalid</exception>
         private IASTNode? BuildTree(string expression, ref int pos)
         {
             IASTNode? node = null;
@@ -38,7 +49,7 @@ namespace task1
                         pos++;
                         leftOperand = BuildTree(expression, ref pos);
                         rightOperand = BuildTree(expression, ref pos);
-                        node = new Operator(op, leftOperand, rightOperand);
+                        node = new OperatorNode(op, leftOperand, rightOperand);
                         for (; pos < expression.Length && expression[pos] == ' '; pos++) ;
                         if (pos >= expression.Length || expression[pos] != ')')
                             throw new InvalidExpressionException();
@@ -65,7 +76,7 @@ namespace task1
                         bool success = int.TryParse(expression.Substring(pos, numberLength), out result);
                         if (!success)
                             throw new InvalidExpressionException();
-                        node = new Value(result);
+                        node = new ValueNode(result);
                         pos += numberLength;
                         return node;
                     default:
@@ -87,7 +98,15 @@ namespace task1
             IASTNode? result = BuildTree(expression, ref pos) ?? throw new InvalidExpressionException();
             root = result;
         }
+        /// <summary>
+        /// evaluates the tree
+        /// </summary>
+        /// <returns>result of the evaluation</returns>
         public double Evaluate() => root.Evaluate();
+        /// <summary>
+        /// converts the tree to string
+        /// </summary>
+        /// <returns>tree converted to string</returns>
         public override string ToString() => root.ToString();
     }
 }

@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 
 namespace task1
 {
-    public class Operator : IASTNode
+    /// <summary>
+    /// operation node of AST tree, implements IASTNode inteface, stores the operation and two operands
+    /// </summary>
+    public class OperatorNode : IASTNode
     {
         private readonly double DELTA = 1e-6;
         private char op { get; }
         IASTNode leftOperand { get; set; }
         IASTNode rightOperand { get; set; }
-        public Operator(char op, IASTNode? leftOperand, IASTNode? rightOperand)
+        public OperatorNode(char op, IASTNode? leftOperand, IASTNode? rightOperand)
         {
             if (!"+-*/".Contains(op))
                 throw new InvalidOperationException();
@@ -23,6 +26,13 @@ namespace task1
             this.leftOperand = leftOperand;
             this.rightOperand = rightOperand;
         }
+        /// <summary>
+        /// applies an operator to its two operands
+        /// </summary>
+        /// <returns>the result of the operation</returns>
+        /// <exception cref="InvalidExpressionException">thrown if at least one of the operands is absent</exception>
+        /// <exception cref="DivideByZeroException">thrown if expression contains division by zero</exception>
+        /// <exception cref="InvalidOperationException">thrown if expression contains invalid operation</exception>
         public double Evaluate()
         {
             if (leftOperand == null || rightOperand == null)
@@ -45,10 +55,15 @@ namespace task1
                     throw new InvalidOperationException();
             }
         }
+        /// <summary>
+        /// prints the operator and its two operands
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="InvalidExpressionException">thrown if at least one of the operands is absent</exception>
         public override string ToString()
         {
             if (leftOperand == null || rightOperand == null)
-                throw new Exception();
+                throw new InvalidExpressionException();
             return $"( {op} {leftOperand.ToString()} {rightOperand.ToString()} )";
         }
     }
