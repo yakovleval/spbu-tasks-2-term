@@ -25,7 +25,7 @@ namespace task2
             }
         }
         protected Node? head = null;
-        protected int size = 0;
+        public int Size { get; private set; }
         /// <summary>
         /// adds new element to the head of the list
         /// </summary>
@@ -33,7 +33,7 @@ namespace task2
         public virtual void Add(int value)
         {
             head = new Node(value, head);
-            size++;
+            Size++;
         }
         /// <summary>
         /// removes element from the list
@@ -53,7 +53,7 @@ namespace task2
             }
             if (curNode == null)
                 return false;
-            size--;
+            Size--;
             if (prevNode != null)
             {
                 prevNode.Next = curNode.Next;
@@ -70,10 +70,10 @@ namespace task2
         /// <returns>true if element to replace was in the list, false otherwise</returns>
         public virtual bool Replace(int value, int position)
         {
-            if (position >= size)
+            if (position >= Size)
                 return false;
             Node? curNode = head;
-            for (int i = 0; curNode != null && i < size - 1 - position; i++)
+            for (int i = 0; curNode != null && i < Size - 1 - position; i++)
             {
                 curNode = curNode.Next;
             }
