@@ -9,7 +9,7 @@ namespace task2
     /// <summary>
     /// linked list data structure
     /// </summary>
-    public class List
+    public class DefaultList
     {
         /// <summary>
         /// node of the list
@@ -24,8 +24,8 @@ namespace task2
                 Next = next;
             }
         }
-        private Node? head = null;
-        public int Size { get; private set; }
+        protected Node? head = null;
+        protected int size = 0;
         /// <summary>
         /// adds new element to the head of the list
         /// </summary>
@@ -33,7 +33,7 @@ namespace task2
         public virtual void Add(int value)
         {
             head = new Node(value, head);
-            Size++;
+            size++;
         }
         /// <summary>
         /// removes element from the list
@@ -53,7 +53,7 @@ namespace task2
             }
             if (curNode == null)
                 return false;
-            Size--;
+            size--;
             if (prevNode != null)
             {
                 prevNode.Next = curNode.Next;
@@ -70,8 +70,10 @@ namespace task2
         /// <returns>true if element to replace was in the list, false otherwise</returns>
         public virtual bool Replace(int value, int position)
         {
+            if (position >= size)
+                return false;
             Node? curNode = head;
-            for (int i = 0; curNode != null && i < Size - position; i++)
+            for (int i = 0; curNode != null && i < size - 1 - position; i++)
             {
                 curNode = curNode.Next;
             }

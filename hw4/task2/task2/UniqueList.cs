@@ -9,9 +9,8 @@ namespace task2
     /// <summary>
     /// extends List class: stores only unique elements
     /// </summary>
-    public class UniqueList : List
+    public class UniqueList : DefaultList
     {
-        Node? head = null;
         private bool Contains(int value)
         {
             Node? curNode = head;
