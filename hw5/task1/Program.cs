@@ -7,7 +7,7 @@ namespace task1
 {
     internal class Program
     {
-        private static List<Edge> ReadGraph(string path)
+        private static (int, List<Edge>) ReadGraph(string path)
         {
             string pattern = @"^(\d+): ?(\d+ ?\(\d+\),? ?)+$";
             var lines = File.ReadAllLines(path);
@@ -15,7 +15,7 @@ namespace task1
             foreach (var line in lines)
             {
                 if (!Regex.IsMatch(line, pattern))
-                    throw new PatternMismatchException();
+                    throw new FileFormatException();
                 var integers = Regex.Split(line, @"\D+").ToList().ConvertAll(int.Parse);
                 int vertex = integers[0];
                 for (int i = 1; i < integers.Count; i += 2)
@@ -25,7 +25,7 @@ namespace task1
                     graph.Add(new Edge(vertex, neighbour, weight));
                 }
             }
-            return graph;
+            return (lines.Length, graph);
         }
         private static void WriteGraph(List<Edge> graph, string path)
         {
@@ -58,8 +58,8 @@ namespace task1
                 string inputPath = args[0];
                 string outputPath = args[1];
 
-                List<Edge> graph = ReadGraph(inputPath);
-                var MSTtree = MST.BuildMST(graph);
+                var (verticesNumber, graph) = ReadGraph(inputPath);
+                var MSTtree = MST.BuildMST(verticesNumber, graph);
                 WriteGraph(MSTtree, outputPath);
             }
 
