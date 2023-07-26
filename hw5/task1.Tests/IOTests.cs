@@ -30,6 +30,8 @@ namespace task1.Tests
         {
             if (first.Count != second.Count)
                 return false;
+            first = first.OrderBy(edge => edge.Weight).ToList();
+            second = second.OrderBy(edge => edge.Weight).ToList();
             for (int i = 0; i < first.Count; i++)
             {
                 if (first[i].Vertex1 != second[i].Vertex1 ||
@@ -67,6 +69,12 @@ namespace task1.Tests
                     new Edge(1, 2, 10),
                     new Edge(1, 3, 15)
                 }), "1: 2 (10), 3 (15)\n"),
+                new TestCaseData(FileIO.PrintGraph(4, new List<Edge>
+                {
+                    new Edge(1, 2, 10),
+                    new Edge(1, 3, 15),
+                    new Edge(1, 4, 40)
+                }), "1: 2 (10), 3 (15), 4 (40)\n")
             };
         [TestCaseSource(nameof(PrintGraphTestCases))]
         public void TestPrintGraph(string actual, string expected)
