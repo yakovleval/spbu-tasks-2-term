@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
+using System.Security;
 using System.Text.RegularExpressions;
 using task1.Exceptions;
 
@@ -62,8 +63,28 @@ namespace task1
                 var MSTtree = MST.BuildMST(verticesNumber, graph);
                 WriteGraph(MSTtree, outputPath);
             }
-
-
+            catch (Exception e)
+            when (e is EmptyGraphException || 
+            e is GraphNotConnectedException)
+            {
+                Console.Error.WriteLine(e.Message);
+                return 1;
+            }
+            catch (Exception e)
+            when (e is ArgumentException ||
+            e is ArgumentNullException ||
+            e is PathTooLongException ||
+            e is DirectoryNotFoundException ||
+            e is IOException ||
+            e is UnauthorizedAccessException ||
+            e is FileNotFoundException ||
+            e is NotSupportedException ||
+            e is SecurityException)
+            {
+                Console.WriteLine(e.Message);
+                return 0;
+            }
+            return 0;
         }
     }
 }
