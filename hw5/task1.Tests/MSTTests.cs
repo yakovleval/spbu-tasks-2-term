@@ -10,7 +10,7 @@ namespace task1.Tests
 
         }
 
-        private static IEnumerable<TestCaseData> RightGraphs
+        private static IEnumerable<TestCaseData> CorrectGraphs
             => new TestCaseData[]
             {
                 new TestCaseData(new List<Edge>{}, 1, 0),
@@ -34,7 +34,7 @@ namespace task1.Tests
                     new Edge(1, 4, 2)
                 }, 4, 4)
             };
-        [TestCaseSource(nameof(RightGraphs))]
+        [TestCaseSource(nameof(CorrectGraphs))]
         public void TestBuildsTreeOfMaximumWeight(List<Edge> graph, int verticesNumber, int actualMSTWeight)
         {
             var mst = MST.BuildMST(verticesNumber, graph);

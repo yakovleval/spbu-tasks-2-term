@@ -26,6 +26,19 @@ namespace task1.Tests
                         new Edge(2, 3, 1)
                     }),
             };
+        private bool GraphsAreEqual(List<Edge> first, List<Edge> second)
+        {
+            if (first.Count != second.Count)
+                return false;
+            for (int i = 0; i < first.Count; i++)
+            {
+                if (first[i].Vertex1 != second[i].Vertex1 ||
+                    first[i].Vertex2 != second[i].Vertex2 ||
+                    first[i].Weight != second[i].Weight)
+                    return false;
+            }
+            return true;
+        }
         [TestCaseSource(nameof(CorrectlyFormattedFiles))]
         public void TestCorrectlyFormattedFiles((int , List<Edge>) readGraph, 
             int actualVerticesNumber, 
@@ -33,7 +46,7 @@ namespace task1.Tests
         {
             var (verticesNumber, graph) = readGraph;
             Assert.That(verticesNumber, Is.EqualTo(actualVerticesNumber));
-            Assert.IsTrue(Enumerable.SequenceEqual(graph.OrderBy(t => t), actualGraph.OrderBy(t => t)));
+            Assert.IsTrue(GraphsAreEqual(graph, actualGraph));
         }
         [Test]
         public void TestIncorrectFormat()
