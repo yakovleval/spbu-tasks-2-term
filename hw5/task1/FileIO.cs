@@ -15,6 +15,7 @@ namespace task1
             string pattern = @"^(\d+): ?(\d+ ?\(\d+\),? ?)*$";
             var lines = File.ReadAllLines(path);
             List<Edge> graph = new();
+            HashSet<int> vertices = new();
             foreach (var line in lines)
             {
                 if (!Regex.IsMatch(line, pattern))
@@ -23,14 +24,18 @@ namespace task1
                 intsInStrings.RemoveAll(str => str == "");
                 var integers = intsInStrings.ConvertAll(int.Parse);
                 int vertex = integers[0];
+                if (!vertices.Contains(vertex))
+                    vertices.Add(vertex);
                 for (int i = 1; i < integers.Count; i += 2)
                 {
                     int neighbour = integers[i];
                     int weight = integers[i + 1];
                     graph.Add(new Edge(vertex, neighbour, weight));
+                    if (!vertices.Contains(neighbour))
+                        vertices.Add(neighbour);
                 }
             }
-            return (lines.Length, graph);
+            return (vertices.Count, graph);
         }
         public static string PrintGraph(int verticesNumber, List<Edge> graph)
         {

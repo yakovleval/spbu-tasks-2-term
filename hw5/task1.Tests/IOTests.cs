@@ -27,7 +27,7 @@ namespace task1.Tests
                     }),
             };
         [TestCaseSource(nameof(CorrectlyFormattedFiles))]
-        public void TestCorrectlyFormattedFiles(Tuple<int, List<Edge>> readGraph, 
+        public void TestCorrectlyFormattedFiles((int , List<Edge>) readGraph, 
             int actualVerticesNumber, 
             List<Edge> actualGraph)
         {
@@ -53,7 +53,7 @@ namespace task1.Tests
                 {
                     new Edge(1, 2, 10),
                     new Edge(1, 3, 15)
-                }), "1: 2 (10)\n1: 3 (15)\n"),
+                }), "1: 2 (10), 3 (15)\n"),
             };
         [TestCaseSource(nameof(PrintGraphTestCases))]
         public void TestPrintGraph(string actual, string expected)
