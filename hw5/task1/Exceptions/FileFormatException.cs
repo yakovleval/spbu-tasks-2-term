@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace task1.Exceptions
 {
-    internal class FileFormatException : Exception
+    public class FileFormatException : Exception
     {
         public FileFormatException(string message = "invalid file format") : base(message) { }
     }

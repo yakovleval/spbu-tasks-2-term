@@ -1,6 +1,7 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
 using System.Security;
+using System.Text;
 using System.Text.RegularExpressions;
 using task1.Exceptions;
 
@@ -10,7 +11,7 @@ namespace task1
     {
         private static (int, List<Edge>) ReadGraph(string path)
         {
-            string pattern = @"^(\d+): ?(\d+ ?\(\d+\),? ?)+$";
+            string pattern = @"^(\d+): ?(\d+ ?\(\d+\),? ?)*$";
             var lines = File.ReadAllLines(path);
             List<Edge> graph = new();
             foreach (var line in lines)
@@ -28,21 +29,28 @@ namespace task1
             }
             return (lines.Length, graph);
         }
-        private static void WriteGraph(List<Edge> graph, string path)
+        private static void WriteGraph(int verticesNumber, List<Edge> graph, string path)
         {
+            if (verticesNumber == 1)
+            {
+                File.WriteAllText(path, "1:\n");
+                return;
+            }
             Dictionary<int, List<(int, int)>> listsOfNeighbours = new();
             foreach (var edge in graph)
             {
                 listsOfNeighbours[edge.Vertex1].Add((edge.Vertex2, edge.Weight));
             }
+            StringBuilder result = new();
             foreach (var (vertex, list) in listsOfNeighbours)
             {
 
                 string stringifiedList = string.Join(", ", list
                     .Select((neighbour, weight) => $"{neighbour} ({weight})")
                     .ToArray<string>());
-                Console.WriteLine($"{vertex}: {stringifiedList}");
+                result.Append($"{vertex}: {stringifiedList}\n");
             }
+            File.WriteAllText(path, result.ToString());
         }
 
         static int Main(string[] args)
@@ -60,8 +68,8 @@ namespace task1
                 string outputPath = args[1];
 
                 var (verticesNumber, graph) = ReadGraph(inputPath);
-                var MSTtree = MST.BuildMST(verticesNumber, graph);
-                WriteGraph(MSTtree, outputPath);
+                var mst = MST.BuildMST(verticesNumber, graph);
+                WriteGraph(verticesNumber, mst, outputPath);
             }
             catch (Exception e)
             when (e is EmptyGraphException || 

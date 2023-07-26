@@ -10,7 +10,7 @@ namespace task1
     /// <summary>
     /// class that helps to build a maximum spanning tree
     /// </summary>
-    internal static class MST
+    public static class MST
     {
         /// <summary>
         /// builds a maximum spanning tree using Prim's algorithm
@@ -22,7 +22,7 @@ namespace task1
         /// <exception cref="GraphNotConnectedException">thrown if graph is not connected</exception>
         public static List<Edge> BuildMST(int verticesNumber, List<Edge> graph)
         {
-            if (graph.Count == 0)
+            if (verticesNumber == 0)
                 throw new EmptyGraphException();
             List<Edge> tree = new();
             HashSet<int> coveredVertices = new HashSet<int>{ 1 };

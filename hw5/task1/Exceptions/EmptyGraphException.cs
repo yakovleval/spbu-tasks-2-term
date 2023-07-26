@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace task1.Exceptions
 {
-    internal class EmptyGraphException : Exception
+    public class EmptyGraphException : Exception
     {
         public EmptyGraphException(string message = "Graph cannot be empty") : base(message) { }
     }

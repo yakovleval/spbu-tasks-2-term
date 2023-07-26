@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace task1
 {
-    internal class Edge
+    public class Edge
     {
         public int Vertex1 { get; }
         public int Vertex2 { get; }
