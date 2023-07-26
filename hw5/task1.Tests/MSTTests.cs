@@ -17,6 +17,11 @@ namespace task1.Tests
                 new TestCaseData(new List<Edge>{new Edge(1, 2, 42)}, 2, 42),
                 new TestCaseData(new List<Edge>
                 {
+                    new Edge(1, 2, 42),
+                    new Edge(1, 3, 42),
+                }, 3, 84),
+                new TestCaseData(new List<Edge>
+                {
                     new Edge(1, 2, 10),
                     new Edge(1, 3, 5),
                     new Edge(2, 3, 1)
