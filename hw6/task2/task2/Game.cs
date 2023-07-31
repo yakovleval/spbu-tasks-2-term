@@ -8,7 +8,7 @@ namespace task2
 {
     public class Game
     {
-        private enum Direction
+        public enum Direction
         {
             Left,
             Right,
@@ -20,7 +20,7 @@ namespace task2
             public int x;
             public int y;
         }
-        private char[,] map;
+        public char[,] Map { get; private set; }
         private Coords charCords;
         private readonly char obstacle = '#';
         private readonly char freeSpace = ' ';
@@ -33,7 +33,7 @@ namespace task2
             {
                 maxLineLength = maxLineLength < lines[i].Length ? lines[i].Length : maxLineLength;
             }
-            map = new char[lines.Length, maxLineLength];
+            Map = new char[lines.Length, maxLineLength];
             for (int i = 0; i < lines.Length; i++)
             {
                 for (int j = 0; j < lines[i].Length; j++)
@@ -41,7 +41,7 @@ namespace task2
                     if (lines[i][j] != obstacle && lines[i][j] != freeSpace &&
                         lines[i][j] != character)
                         throw new FormatException("map format is incorrect");
-                    map[i, j] = lines[i][j];
+                    Map[i, j] = lines[i][j];
                     if (lines[i][j] == character)
                     {
                         charCords.x = i;
@@ -54,11 +54,11 @@ namespace task2
 
         private void PrintMap()
         {
-            for (int i = 0; i < map.GetLength(0); i++)
+            for (int i = 0; i < Map.GetLength(0); i++)
             {
-                for (int j = 0; j < map.GetLength(1); j++)
+                for (int j = 0; j < Map.GetLength(1); j++)
                 {
-                    Console.Write(map[i, j]);
+                    Console.Write(Map[i, j]);
                 }
                 Console.WriteLine();
             }
@@ -70,25 +70,28 @@ namespace task2
             {
                 case Direction.Left:
                     return charCords.y > 0 && 
-                        map[charCords.x, charCords.y - 1] == freeSpace;
+                        Map[charCords.x, charCords.y - 1] == freeSpace;
                 case Direction.Right:
-                    return charCords.y < map.GetLength(1) - 1 && 
-                        map[charCords.x, charCords.y + 1] == freeSpace;
+                    return charCords.y < Map.GetLength(1) - 1 && 
+                        Map[charCords.x, charCords.y + 1] == freeSpace;
                 case Direction.Up:
                     return charCords.x > 0 &&
-                        map[charCords.x - 1, charCords.y] == freeSpace;
+                        Map[charCords.x - 1, charCords.y] == freeSpace;
                 default:
-                    return charCords.x < map.GetLength(0) &&
-                        map[charCords.x + 1, charCords.y] == freeSpace;
+                    return charCords.x < Map.GetLength(0) &&
+                        Map[charCords.x + 1, charCords.y] == freeSpace;
             }
         }
-        private void Move(Direction dir)
+        private void Move(Direction dir, bool updateView)
         {
             if (!CanMove(dir))
                 return;
-            Console.SetCursorPosition(charCords.y, charCords.x);
-            map[charCords.x, charCords.y] = freeSpace;
-            Console.Write(freeSpace);
+            if (updateView)
+            {
+                Console.SetCursorPosition(charCords.y, charCords.x);
+                Console.Write(freeSpace);
+            }
+            Map[charCords.x, charCords.y] = freeSpace;
             switch (dir)
             {
                 case Direction.Left:
@@ -104,25 +107,28 @@ namespace task2
                     charCords.x++;
                     break;
             }
-            Console.SetCursorPosition(charCords.y, charCords.x);
-            map[charCords.x, charCords.y] = character;
-            Console.Write(character);
+            Map[charCords.x, charCords.y] = character;
+            if (updateView)
+            {
+                Console.SetCursorPosition(charCords.y, charCords.x);
+                Console.Write(character);
+            }
         }
-        public void OnLeft(object sender, EventArgs args)
+        public void OnLeft(object sender, UpdateViewEventArgs args)
         {
-            Move(Direction.Left);
+            Move(Direction.Left, args.UpdateView);
         }
-        public void OnRight(object sender, EventArgs args)
+        public void OnRight(object sender, UpdateViewEventArgs args)
         {
-            Move(Direction.Right);
+            Move(Direction.Right, args.UpdateView);
         }
-        public void OnUp(object sender, EventArgs args)
+        public void OnUp(object sender, UpdateViewEventArgs args)
         {
-            Move(Direction.Up);
+            Move(Direction.Up, args.UpdateView);
         }
-        public void OnDown(object sender, EventArgs args)
+        public void OnDown(object sender, UpdateViewEventArgs args)
         {
-            Move(Direction.Down);
+            Move(Direction.Down, args.UpdateView);
         }
     }
 }

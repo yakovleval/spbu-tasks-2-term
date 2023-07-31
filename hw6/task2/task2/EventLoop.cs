@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 public delegate void ArrowHandler();
 namespace task2
 {
+    public class UpdateViewEventArgs : EventArgs
+    {
+        private readonly bool updateView;
+        public UpdateViewEventArgs(bool updateView = true) => this.updateView = updateView;
+        public bool UpdateView => updateView;
+    }
     public class EventLoop
     {
-        public event EventHandler<EventArgs> LeftHandler = (sender, args) => { };
-        public event EventHandler<EventArgs> RightHandler = (sender, args) => { };
-        public event EventHandler<EventArgs> UpHandler = (sender, args) => { };
-        public event EventHandler<EventArgs> DownHandler = (sender, args) => { };
+        public event EventHandler<UpdateViewEventArgs> LeftHandler = (sender, args) => { };
+        public event EventHandler<UpdateViewEventArgs> RightHandler = (sender, args) => { };
+        public event EventHandler<UpdateViewEventArgs> UpHandler = (sender, args) => { };
+        public event EventHandler<UpdateViewEventArgs> DownHandler = (sender, args) => { };
         public void Run()
         {
             while (true)
@@ -20,16 +26,16 @@ namespace task2
                 switch (key.Key)
                 {
                     case ConsoleKey.LeftArrow:
-                        LeftHandler(this, EventArgs.Empty);
+                        LeftHandler(this, new UpdateViewEventArgs());
                         break;
                     case ConsoleKey.RightArrow:
-                        RightHandler(this, EventArgs.Empty);
+                        RightHandler(this, new UpdateViewEventArgs());
                         break;
                     case ConsoleKey.UpArrow:
-                        UpHandler(this, EventArgs.Empty);
+                        UpHandler(this, new UpdateViewEventArgs());
                         break;
                     case ConsoleKey.DownArrow:
-                        DownHandler(this, EventArgs.Empty);
+                        DownHandler(this, new UpdateViewEventArgs());
                         break;
                     default:
                         return;
