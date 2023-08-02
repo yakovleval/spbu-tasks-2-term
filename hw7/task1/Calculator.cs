@@ -13,7 +13,7 @@ namespace task1
     {
         private readonly string errorMsg = "Error";
         private string numberDisplay = "0";
-        private string operationDisplay = string.Empty;
+        private string operationDisplay = "";
         public string NumberDisplay
         {
             get
