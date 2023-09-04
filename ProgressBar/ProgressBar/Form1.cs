@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-
 namespace ProgressBar
 {
     public partial class Form1 : Form
