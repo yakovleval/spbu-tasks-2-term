@@ -16,8 +16,7 @@
         /// <summary>
         /// number of keys in the Trie
         /// </summary>
-        public int Size { get { return root.KeysNumberInSubtree; } }
-        public Trie() { }
+        public int Size => root.KeysNumberInSubtree;
         public void InitializeWithAllChars()
         {
             for (int i = 0; i < 256; i++)
