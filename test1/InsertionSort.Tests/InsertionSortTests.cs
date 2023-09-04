@@ -2,11 +2,6 @@ namespace InsertionSort.Tests
 {
     public class Tests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         private bool AreArraysEqual<T>(T[] array1, T[] array2) where T : IComparable
         {
             if (array1.Length != array2.Length)
@@ -21,7 +16,12 @@ namespace InsertionSort.Tests
 
         class ReverseOrderComparer<T> : IComparer<T> where T : IComparable
         {
-            public int Compare(T x, T y) => x.CompareTo(y) * -1;
+            public int Compare(T? x, T? y)
+            {
+                if (x == null)
+                    throw new ArgumentNullException(nameof(x));
+                return -x.CompareTo(y);
+            }
         }
 
         [TestCase(new int[] { }, new int[] { })]

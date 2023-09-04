@@ -11,10 +11,8 @@
         /// <typeparam name="T">type of elements to sort</typeparam>
         /// <param name="listToSort">list of values of type T to sort</param>
         /// <param name="comparer">comparer object to compare values of type T</param>
-        /// <returns></returns>
         public static List<T> Sort<T>(List<T> listToSort, IComparer<T> comparer)
         {
-            int[] kek = new int[] { };
             for (int i = 1; i < listToSort.Count; i++)
             {
                 int j = i;
