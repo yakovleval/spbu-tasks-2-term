@@ -1,4 +1,4 @@
-﻿namespace task2.Tests
+﻿namespace Task2.Tests
 {
     public class UniqueListExceptionsTests
     {

@@ -1,4 +1,4 @@
-﻿using task2;
+﻿using Task2;
 
 internal class Program
 {

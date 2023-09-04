@@ -1,4 +1,4 @@
-﻿namespace task2
+﻿namespace Task2
 {
     public class AdditionOfExistentElementException : Exception
     {
