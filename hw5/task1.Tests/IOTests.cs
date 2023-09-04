@@ -21,6 +21,7 @@ namespace task1.Tests
                         new Edge(2, 3, 1)
                     }),
             };
+
         private bool GraphsAreEqual(List<Edge> first, List<Edge> second)
         {
             if (first.Count != second.Count)
@@ -36,6 +37,7 @@ namespace task1.Tests
             }
             return true;
         }
+
         [TestCaseSource(nameof(CorrectlyFormattedFiles))]
         public void TestCorrectlyFormattedFiles((int, List<Edge>) readGraph,
             int actualVerticesNumber,
@@ -45,12 +47,14 @@ namespace task1.Tests
             Assert.That(verticesNumber, Is.EqualTo(actualVerticesNumber));
             Assert.IsTrue(GraphsAreEqual(graph, actualGraph));
         }
+
         [Test]
         public void TestIncorrectFormat()
         {
             string path = "../../../TestFiles/IncorrectFormat.txt";
             Assert.Throws<FileFormatException>(() => FileIO.ReadGraph(path));
         }
+
         private static IEnumerable<TestCaseData> PrintGraphTestCases
             => new TestCaseData[]
             {
@@ -71,6 +75,7 @@ namespace task1.Tests
                     new Edge(1, 4, 40)
                 }), "1: 2 (10), 3 (15), 4 (40)\n")
             };
+
         [TestCaseSource(nameof(PrintGraphTestCases))]
         public void TestPrintGraph(string actual, string expected)
         {

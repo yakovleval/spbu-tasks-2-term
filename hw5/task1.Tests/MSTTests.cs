@@ -34,6 +34,7 @@ namespace task1.Tests
                     new Edge(1, 4, 2)
                 }, 4, 4)
             };
+
         [TestCaseSource(nameof(CorrectGraphs))]
         public void TestBuildsTreeOfMaximumWeight(List<Edge> graph, int verticesNumber, int actualMSTWeight)
         {
@@ -44,12 +45,14 @@ namespace task1.Tests
                 weightsSum += edge.Weight;
             Assert.That(weightsSum, Is.EqualTo(actualMSTWeight));
         }
+
         [Test]
         public void TestEmptyGraph()
         {
             List<Edge> graph = new();
             Assert.Throws<EmptyGraphException>(() => MST.BuildMST(0, graph));
         }
+
         private static IEnumerable<TestCaseData> DisconnectedGraphs
             => new TestCaseData[]
             {
@@ -58,6 +61,7 @@ namespace task1.Tests
                 new TestCaseData(new List<Edge>{new Edge(1, 2, 1)}, 3),
                 new TestCaseData(new List<Edge>{new Edge(1, 2, 1), new Edge(3, 4, 2)}, 4)
             };
+
         [TestCaseSource(nameof(DisconnectedGraphs))]
         public void TestDisconnectedGraphs(List<Edge> graph, int verticesNumber)
         {

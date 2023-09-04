@@ -33,6 +33,7 @@ namespace task1
             }
             return (vertices.Count, graph);
         }
+
         public static string PrintGraph(int verticesNumber, List<Edge> graph)
         {
             if (verticesNumber == 1)
@@ -57,6 +58,5 @@ namespace task1
             }
             return result.ToString();
         }
-
     }
 }
