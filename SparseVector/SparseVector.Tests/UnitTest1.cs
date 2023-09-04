@@ -64,11 +64,13 @@ namespace SparseVector.Tests
                 new SparseVector(new int[] {0, 1, 2, 3})
             ),
             };
+
         [TestCaseSource(nameof(VectorsForSubtractionTest))]
         public void TestSubtraction(SparseVector first, SparseVector second, SparseVector expected)
         {
             Assert.That(first.Subtract(second).IsEqual(expected), Is.True);
         }
+
         private static IEnumerable<TestCaseData> VectorsForMultiplicationTest
             => new TestCaseData[]
             {
@@ -88,11 +90,13 @@ namespace SparseVector.Tests
                 0
             )
             };
+
         [TestCaseSource(nameof(VectorsForMultiplicationTest))]
         public void TestMultiplication(SparseVector first, SparseVector second, int expected)
         {
             Assert.That(first.ScalarMultiply(second), Is.EqualTo(expected));
         }
+
         [Test]
         public void TestOperationOnVectorsOfDifferentSize()
         {

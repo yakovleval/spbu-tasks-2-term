@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SparseVector
+﻿namespace SparseVector
 {
     /// <summary>
     /// class that implements sparse vector with addition, subtraction and
