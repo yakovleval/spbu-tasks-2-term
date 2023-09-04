@@ -1,4 +1,4 @@
-﻿namespace task2
+﻿namespace Task2
 {
     /// <summary>
     /// Implementation of LZW algorithm
@@ -49,6 +49,7 @@
             }
             return byteBuffer.CompressedBytes.ToArray();
         }
+
         /// <summary>
         /// decompresses a byte array
         /// </summary>
@@ -63,7 +64,7 @@
                 dict[i] = string.Empty + (char)i;
             }
             ReadBuffer intBuffer = new(input);
-            List<byte> output = new(); 
+            List<byte> output = new();
             int prevCode = 0;
             int curCode = 0;
             prevCode = intBuffer.Read(currentCodeLength);
@@ -91,8 +92,6 @@
                     }
                     currentCodeLength = 8;
                 }
-                
-                
                 if (dict.Count == (1 << currentCodeLength))
                     currentCodeLength++;
                 prevCode = curCode;

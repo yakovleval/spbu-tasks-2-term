@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace task2
+﻿namespace Task2
 {
     /// <summary>
     /// this class helps to write codes 
@@ -23,6 +17,7 @@ namespace task2
             this.curBufferSize = 0;
             CompressedBytes = new();
         }
+
         /// <summary>
         /// writes code to a byte array
         /// </summary>
@@ -39,6 +34,7 @@ namespace task2
                     Flush();
             }
         }
+
         /// <summary>
         /// writes the remaning bits in the buffer to the array
         /// </summary>

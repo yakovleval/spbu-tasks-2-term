@@ -1,4 +1,4 @@
-namespace task2.tests
+namespace Task2.Tests
 {
     [TestClass]
     public class TrieTests
@@ -18,6 +18,7 @@ namespace task2.tests
             Assert.IsTrue(trie.Add("a", 1));
             Assert.IsTrue(trie.Contains("a"));
         }
+
         [TestMethod]
         public void TestAddAndRemove()
         {
@@ -25,6 +26,7 @@ namespace task2.tests
             Assert.IsTrue(trie.Add("a", 1));
             Assert.IsTrue(trie.Remove("a"));
         }
+
         [TestMethod]
         public void TestRemoveAndContains()
         {
@@ -33,12 +35,14 @@ namespace task2.tests
             Assert.IsTrue(trie.Remove("a"));
             Assert.IsFalse(trie.Contains("a"));
         }
+
         [TestMethod]
         public void TestGetNonExistentKey()
         {
             Trie trie = new();
             Assert.ThrowsException<KeyNotFoundException>(() => trie.Get("abc"));
         }
+
         [TestMethod]
         public void TestRemoveAndSize()
         {
@@ -55,6 +59,7 @@ namespace task2.tests
             Assert.AreEqual(trie.Size, 0);
 
         }
+
         [TestMethod]
         public void TestGetPrefixOfExistentKey()
         {
@@ -62,6 +67,7 @@ namespace task2.tests
             trie.Add("abcd", 1);
             Assert.ThrowsException<KeyNotFoundException>(() => trie.Get("abc"));
         }
+
         [TestMethod]
         public void TestInitializeWithAllCharsAndSize()
         {

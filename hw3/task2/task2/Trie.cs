@@ -1,4 +1,4 @@
-﻿namespace task2
+﻿namespace Task2
 {
     /// <summary>
     /// search tree, key-value data structure with string keys and integer values

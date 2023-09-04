@@ -1,12 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace task2.tests
+﻿namespace Task2.Tests
 {
     [TestClass]
     public class LZWTests
@@ -22,6 +14,7 @@ namespace task2.tests
             }
             return true;
         }
+
         [TestMethod]
         public void TestCompressAndDecompressEmptyByteArray()
         {
@@ -30,6 +23,7 @@ namespace task2.tests
             byte[] decompressed = LZW.Decompress(compressed);
             Assert.IsTrue(ByteArraysAreIdentical(array, decompressed));
         }
+
         [TestMethod]
         public void TestCompressAndDecompressArrayOfOneELem()
         {
@@ -38,6 +32,7 @@ namespace task2.tests
             byte[] decompressed = LZW.Decompress(compressed);
             Assert.IsTrue(ByteArraysAreIdentical(array, decompressed));
         }
+
         [TestMethod]
         public void TestCompressAndDecompressArrayOfZeros()
         {
@@ -55,6 +50,7 @@ namespace task2.tests
             byte[] decompressed = LZW.Decompress(compressed);
             Assert.IsTrue(ByteArraysAreIdentical(array, decompressed));
         }
+
         [TestMethod]
         public void TestCompressAndDecompressLargerArray()
         {

@@ -1,15 +1,16 @@
-﻿namespace task2
+﻿namespace Task2
 {
     internal class Program
     {
-        static readonly string helpMessage = """
+        private static readonly string helpMessage = """
 
             usage: dotnet run [<path to file>] [<option>]
 
             --c  compress file
             --u  decompress file (must have '.zipped' extension)
             """;
-        static void Main(string[] args)
+
+        public static void Main(string[] args)
         {
             if (args.Length != 2)
             {
@@ -29,7 +30,7 @@
                         byte[] compressedBytes = LZW.Compress(fileBytes);
                         string compressedFilePath = path + ".zipped";
                         File.WriteAllBytes(compressedFilePath, compressedBytes);
-                        Console.WriteLine("done! Compression rate: {0:0.00}", 
+                        Console.WriteLine("done! Compression rate: {0:0.00}",
                             (double)compressedBytes.Length / fileBytes.Length);
                         break;
                     case "--u":
@@ -50,8 +51,6 @@
                 Console.WriteLine("Error: " + e.Message);
                 Console.WriteLine(helpMessage);
             }
-            
-
         }
     }
 }

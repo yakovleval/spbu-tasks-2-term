@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace task2
+﻿namespace Task2
 {
     /// <summary>
     /// this class helps to extract codes whose 
@@ -22,12 +16,9 @@ namespace task2
 
         public ReadBuffer(byte[] input)
         {
-            intBuffer = 0;
             CompressedCodes = input;
-            byteBuffer = 0;
-            byteBufferSize = 0;
-            curPos = 0;
         }
+
         /// <summary>
         /// reads next code from compressed byte array
         /// </summary>

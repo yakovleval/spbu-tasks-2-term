@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace task2.tests
+﻿namespace Task2.Tests
 {
     [TestClass]
     public class BuffersTests
@@ -27,6 +21,7 @@ namespace task2.tests
                 Assert.AreEqual(i, code);
             }
         }
+
         [TestMethod]
         public void TestReadEmpty()
         {
