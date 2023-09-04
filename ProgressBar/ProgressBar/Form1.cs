@@ -2,36 +2,36 @@ namespace ProgressBar
 {
     public partial class Form1 : Form
     {
-        private System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
+        private System.Windows.Forms.Timer progressBarUpdater = new System.Windows.Forms.Timer();
 
         public Form1()
         {
             InitializeComponent();
-            myTimer.Tick += new EventHandler(TimerEventProcessor);
+            progressBarUpdater.Tick += new EventHandler(TimerEventProcessor);
         }
 
         private void TimerEventProcessor(Object myObject,
                                             EventArgs myEventArgs)
         {
-            if (progressBar1.Value == 100)
+            if (progressBar.Value == 100)
             {
-                myTimer.Stop();
-                button1.Enabled = true;
-                button1.Text = "close";
+                progressBarUpdater.Stop();
+                startStopButton.Enabled = true;
+                startStopButton.Text = "close";
                 return;
             }
-            progressBar1.Value += 10;
+            progressBar.Value += 10;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void StartStopButton_Click(object sender, EventArgs e)
         {
-            if (progressBar1.Value == 0)
+            if (progressBar.Value == 0)
             {
-                myTimer.Interval = 500;
-                myTimer.Start();
-                button1.Enabled = false;
+                progressBarUpdater.Interval = 500;
+                progressBarUpdater.Start();
+                startStopButton.Enabled = false;
             }
-            if (progressBar1.Value == 100)
+            if (progressBar.Value == 100)
             {
                 this.Close();
             }

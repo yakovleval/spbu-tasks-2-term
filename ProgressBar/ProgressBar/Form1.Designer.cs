@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             tableLayoutPanel1 = new TableLayoutPanel();
-            progressBar1 = new System.Windows.Forms.ProgressBar();
-            button1 = new Button();
+            progressBar = new System.Windows.Forms.ProgressBar();
+            startStopButton = new Button();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -38,8 +38,8 @@
             // 
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(progressBar1, 0, 0);
-            tableLayoutPanel1.Controls.Add(button1, 0, 1);
+            tableLayoutPanel1.Controls.Add(progressBar, 0, 0);
+            tableLayoutPanel1.Controls.Add(startStopButton, 0, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -50,25 +50,25 @@
             tableLayoutPanel1.Size = new Size(800, 450);
             tableLayoutPanel1.TabIndex = 0;
             // 
-            // progressBar1
+            // progressBar
             // 
-            progressBar1.Dock = DockStyle.Fill;
-            progressBar1.Location = new Point(3, 3);
-            progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(794, 219);
-            progressBar1.TabIndex = 0;
+            progressBar.Dock = DockStyle.Fill;
+            progressBar.Location = new Point(3, 3);
+            progressBar.Name = "progressBar";
+            progressBar.Size = new Size(794, 219);
+            progressBar.TabIndex = 0;
             // 
-            // button1
+            // startStopButton
             // 
-            button1.Dock = DockStyle.Fill;
-            button1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(3, 228);
-            button1.Name = "button1";
-            button1.Size = new Size(794, 219);
-            button1.TabIndex = 1;
-            button1.Text = "start";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            startStopButton.Dock = DockStyle.Fill;
+            startStopButton.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            startStopButton.Location = new Point(3, 228);
+            startStopButton.Name = "startStopButton";
+            startStopButton.Size = new Size(794, 219);
+            startStopButton.TabIndex = 1;
+            startStopButton.Text = "start";
+            startStopButton.UseVisualStyleBackColor = true;
+            startStopButton.Click += StartStopButton_Click;
             // 
             // Form1
             // 
@@ -85,7 +85,7 @@
         #endregion
 
         private TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private Button button1;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private Button startStopButton;
     }
 }
