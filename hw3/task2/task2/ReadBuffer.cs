@@ -34,7 +34,8 @@
                     byteBuffer = 0;
                     if (curPos == CompressedCodes.Length)
                         return -1;
-                    byteBuffer = CompressedCodes[curPos++];
+                    byteBuffer = CompressedCodes[curPos];
+                    curPos++;
                     byteBufferSize = BYTE_BUFFER_CAPACITY;
                 }
                 byte nextBit = (byte)((byteBuffer >> (byteBufferSize - 1)) % 2);
