@@ -46,6 +46,7 @@ namespace InsertionSort.Tests
         }
 
         [TestCase(new string[] { }, new string[] { })]
+        [TestCase(new string[] { "" }, new string[] { "" })]
         [TestCase(new string[] { "abcd" }, new string[] { "abcd" })]
         [TestCase(new string[] { "d", "c", "b", "a" }, new string[] { "a", "b", "c", "d" })]
         [TestCase(new string[] { "xyz", "bar", "foo" }, new string[] { "bar", "foo", "xyz" })]
