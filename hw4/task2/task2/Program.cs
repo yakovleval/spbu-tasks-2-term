@@ -14,6 +14,7 @@ internal class Program
         } while (!success);
         return value;
     }
+
     private static void Main(string[] args)
     {
         UniqueList list = new();

@@ -20,6 +20,7 @@
         }
         protected Node? head = null;
         public int Size { get; private set; }
+
         /// <summary>
         /// adds new element to the head of the list
         /// </summary>
@@ -29,6 +30,7 @@
             head = new Node(value, head);
             Size++;
         }
+
         /// <summary>
         /// removes element from the list
         /// </summary>
@@ -56,6 +58,7 @@
             head = head.Next;
             return true;
         }
+
         /// <summary>
         /// replaces element on a given position
         /// </summary>

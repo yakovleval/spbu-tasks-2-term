@@ -11,6 +11,7 @@
             for (; curNode != null && curNode.Value != value; curNode = curNode.Next) ;
             return curNode != null;
         }
+
         /// <summary>
         /// overrides List.Add method
         /// </summary>
@@ -22,6 +23,7 @@
                 throw new AdditionOfExistentElementException();
             base.Add(value);
         }
+
         /// <summary>
         /// overrides List.Remove method
         /// </summary>
@@ -34,6 +36,7 @@
                 throw new DeletingNonExistingElementException();
             return base.Remove(value);
         }
+
         /// <summary>
         /// overrides List.Replace method
         /// </summary>

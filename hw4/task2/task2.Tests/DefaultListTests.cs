@@ -5,6 +5,7 @@
         private DefaultList list;
         [SetUp]
         public void SetUp() => list = new DefaultList();
+
         [Test]
         public void TestAddExistingElement()
         {
@@ -17,6 +18,7 @@
         {
             Assert.IsFalse(list.Remove(1));
         }
+
         [Test]
         public void TestRemoveNonExistentElement()
         {
