@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using task1.Exceptions;
+﻿using task1.Exceptions;
 
 namespace task1
 {
@@ -25,13 +20,13 @@ namespace task1
             if (verticesNumber == 0)
                 throw new EmptyGraphException();
             List<Edge> tree = new();
-            HashSet<int> coveredVertices = new HashSet<int>{ 1 };
+            HashSet<int> coveredVertices = new HashSet<int> { 1 };
             for (int i = 0; i < verticesNumber - 1; i++)
             {
                 Edge maxEdge = new(0, 0, -1);
-                foreach(var edge in graph)
+                foreach (var edge in graph)
                 {
-                    if (coveredVertices.Contains(edge.Vertex1) && 
+                    if (coveredVertices.Contains(edge.Vertex1) &&
                         !coveredVertices.Contains(edge.Vertex2) &&
                         edge.Weight > maxEdge.Weight)
                         maxEdge = edge;

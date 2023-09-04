@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using task1.Exceptions;
+﻿using task1.Exceptions;
 
 namespace task1.Tests
 {
@@ -42,8 +37,8 @@ namespace task1.Tests
             return true;
         }
         [TestCaseSource(nameof(CorrectlyFormattedFiles))]
-        public void TestCorrectlyFormattedFiles((int , List<Edge>) readGraph, 
-            int actualVerticesNumber, 
+        public void TestCorrectlyFormattedFiles((int, List<Edge>) readGraph,
+            int actualVerticesNumber,
             List<Edge> actualGraph)
         {
             var (verticesNumber, graph) = readGraph;

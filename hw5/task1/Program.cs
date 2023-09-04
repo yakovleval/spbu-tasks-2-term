@@ -1,15 +1,11 @@
-﻿using System.Collections.Immutable;
-using System.Linq;
-using System.Security;
-using System.Text;
-using System.Text.RegularExpressions;
+﻿using System.Security;
 using task1.Exceptions;
 
 namespace task1
 {
     internal class Program
     {
-        static int Main(string[] args)
+        private static int Main(string[] args)
         {
             try
             {

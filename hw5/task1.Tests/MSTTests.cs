@@ -1,6 +1,6 @@
 using task1.Exceptions;
 namespace task1.Tests
-   
+
 {
     public class Tests
     {
