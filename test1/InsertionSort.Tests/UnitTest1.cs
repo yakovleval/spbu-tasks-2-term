@@ -1,6 +1,3 @@
-using System.ComponentModel;
-using System.Linq;
-
 namespace InsertionSort.Tests
 {
     public class Tests
