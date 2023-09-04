@@ -1,7 +1,3 @@
-using System.Numerics;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.CompilerServices;
-
 namespace task1.Tests
 {
     public class Tests
@@ -23,7 +19,7 @@ namespace task1.Tests
         {
             var list = new List<int>();
             var result = Functions.Map(list, x => x * 2);
-            Assert.IsTrue(result.SequenceEqual(new List<int> ()));
+            Assert.IsTrue(result.SequenceEqual(new List<int>()));
         }
         [Test]
         public void TestFilterArbitrary()
@@ -42,8 +38,8 @@ namespace task1.Tests
         [Test]
         public void TestFoldArbitrary()
         {
-            var list = new List<int>() { 1, 2, 3, 4, 5};
-            var result = Functions.Fold(list, 1, (acc, elem ) => acc * elem);
+            var list = new List<int>() { 1, 2, 3, 4, 5 };
+            var result = Functions.Fold(list, 1, (acc, elem) => acc * elem);
             Assert.AreEqual(120, result);
         }
         [Test]

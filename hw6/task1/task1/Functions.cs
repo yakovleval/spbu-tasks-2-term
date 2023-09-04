@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace task1
+﻿namespace task1
 {
     /// <summary>
     /// class that implements Map, Filter and Fold functions
@@ -24,7 +17,7 @@ namespace task1
         {
             List<T> result = new();
             foreach (var elem in list)
-                if (!function(elem)) 
+                if (!function(elem))
                     result.Add(elem);
             return result;
         }
