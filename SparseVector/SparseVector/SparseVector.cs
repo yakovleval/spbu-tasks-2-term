@@ -10,6 +10,7 @@
         public int Size { get; private set; } = 0;
 
         public SparseVector() { }
+
         public SparseVector(Dictionary<int, int> other)
         {
             int maxIndex = 0;
@@ -22,6 +23,7 @@
             }
             Size = maxIndex;
         }
+
         public SparseVector(int[] other)
         {
             Size = other.Length;
@@ -31,6 +33,7 @@
                     vector[i] = other[i];
             }
         }
+
         private void MultiplyByNegativeOne()
         {
             Dictionary<int, int> result = new();
@@ -48,6 +51,7 @@
             if (vector[index] == 0)
                 vector.Remove(index);
         }
+
         /// <summary>
         /// adds two vectors value by value 
         /// </summary>
@@ -64,6 +68,7 @@
             }
             return other;
         }
+
         /// <summary>
         /// subtracts <param name="other"> vector from this vector
         /// </summary>
@@ -77,6 +82,7 @@
             other.MultiplyByNegativeOne();
             return this.Add(other);
         }
+
         /// <summary>
         /// scalar multiplies two vectors 
         /// </summary>
@@ -94,6 +100,7 @@
             }
             return result;
         }
+
         /// <summary>
         /// checks if vector is zero
         /// </summary>
