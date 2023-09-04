@@ -85,17 +85,20 @@ namespace task1
             }
             return node;
         }
+
         public AST(string expression)
         {
             int pos = 0;
             IASTNode? result = BuildTree(expression, ref pos) ?? throw new InvalidExpressionException();
             root = result;
         }
+
         /// <summary>
         /// evaluates the tree
         /// </summary>
         /// <returns>result of the evaluation</returns>
         public double Evaluate() => root.Evaluate();
+
         /// <summary>
         /// converts the tree to string
         /// </summary>

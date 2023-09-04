@@ -9,8 +9,9 @@ namespace task1
     {
         private readonly double DELTA = 1e-6;
         private char op { get; }
-        IASTNode leftOperand { get; set; }
-        IASTNode rightOperand { get; set; }
+        private IASTNode leftOperand { get; set; }
+        private IASTNode rightOperand { get; set; }
+
         public OperatorNode(char op, IASTNode? leftOperand, IASTNode? rightOperand)
         {
             if (!"+-*/".Contains(op))
@@ -21,6 +22,7 @@ namespace task1
             this.leftOperand = leftOperand;
             this.rightOperand = rightOperand;
         }
+
         /// <summary>
         /// applies an operator to its two operands
         /// </summary>
@@ -50,6 +52,7 @@ namespace task1
                     throw new InvalidOperationException();
             }
         }
+
         /// <summary>
         /// prints the operator and its two operands
         /// </summary>

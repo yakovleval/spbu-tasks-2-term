@@ -10,6 +10,7 @@
         /// </summary>
         /// <returns>the result of the evaluation</returns>
         double Evaluate();
+
         /// <summary>
         /// converts subtree of the node to string
         /// </summary>
