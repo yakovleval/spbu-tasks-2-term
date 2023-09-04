@@ -40,7 +40,7 @@
             }
             vector = result;
         }
-        
+
         private int GetValueAt(int index) => vector.GetValueOrDefault(index, 0);
         private void AddValueAt(int index, int value)
         {

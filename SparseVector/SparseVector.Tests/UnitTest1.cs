@@ -101,7 +101,7 @@ namespace SparseVector.Tests
         public void TestOperationOnVectorsOfDifferentSize()
         {
             SparseVector vector1 = new SparseVector(new int[] { 1, 2, 3 });
-            SparseVector vector2 = new SparseVector(new int[] { 1, 2, 3, 4});
+            SparseVector vector2 = new SparseVector(new int[] { 1, 2, 3, 4 });
             Assert.Throws<InvalidOperationException>(() => vector1.Add(vector2));
             Assert.Throws<InvalidOperationException>(() => vector1.Subtract(vector2));
             Assert.Throws<InvalidOperationException>(() => vector1.ScalarMultiply(vector2));
