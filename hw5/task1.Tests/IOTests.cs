@@ -1,6 +1,6 @@
-﻿using task1.Exceptions;
+﻿using Task1.Exceptions;
 
-namespace task1.Tests
+namespace Task1.Tests
 {
     public class IOTests
     {

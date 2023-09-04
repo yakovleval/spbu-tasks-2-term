@@ -1,6 +1,6 @@
-﻿using task1.Exceptions;
+﻿using Task1.Exceptions;
 
-namespace task1
+namespace Task1
 {
     /// <summary>
     /// class that helps to build a maximum spanning tree

@@ -1,7 +1,7 @@
 ﻿using System.Security;
-using task1.Exceptions;
+using Task1.Exceptions;
 
-namespace task1
+namespace Task1
 {
     internal class Program
     {

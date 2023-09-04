@@ -1,5 +1,5 @@
-using task1.Exceptions;
-namespace task1.Tests
+using Task1.Exceptions;
+namespace Task1.Tests
 
 {
     public class Tests

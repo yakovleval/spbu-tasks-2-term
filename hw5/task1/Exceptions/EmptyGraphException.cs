@@ -1,4 +1,4 @@
-﻿namespace task1.Exceptions
+﻿namespace Task1.Exceptions
 {
     public class EmptyGraphException : Exception
     {
