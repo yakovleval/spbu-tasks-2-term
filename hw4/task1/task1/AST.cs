@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿using System.Data;
 
 namespace task1
 {
@@ -29,7 +22,7 @@ namespace task1
             IASTNode? node = null;
             for (; pos < expression.Length; pos++)
             {
-                switch(expression[pos])
+                switch (expression[pos])
                 {
                     case ' ':
                         continue;

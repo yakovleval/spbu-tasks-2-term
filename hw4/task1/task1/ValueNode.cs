@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace task1
+﻿namespace task1
 {
     /// <summary>
     /// value node of AST tree, implements IASTNode interface, stores integer value

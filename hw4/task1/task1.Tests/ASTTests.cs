@@ -1,7 +1,5 @@
-using System.Data;
-using System.Linq.Expressions;
-using System.Numerics;
 using NUnit.Framework;
+using System.Data;
 
 
 namespace task1
@@ -22,7 +20,7 @@ namespace task1
         {
             AST tree = new(expression);
             return tree.Evaluate();
-            
+
         }
         [TestCaseSource(nameof(InvalidExpressions))]
         public void TestInvalidExpressionException(string expression)

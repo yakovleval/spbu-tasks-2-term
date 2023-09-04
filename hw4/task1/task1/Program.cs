@@ -47,7 +47,7 @@ namespace task1
                 {
                     Console.WriteLine("Error: division by zero");
                 }
-                
+
             }
         }
     }
