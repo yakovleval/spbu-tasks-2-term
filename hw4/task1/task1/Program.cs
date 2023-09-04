@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace task1
+namespace Task1
 {
     internal class Program
     {

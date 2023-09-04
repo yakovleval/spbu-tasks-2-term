@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace task1
+namespace Task1
 {
     /// <summary>
     /// abstract syntax tree data structure for expression evaluation

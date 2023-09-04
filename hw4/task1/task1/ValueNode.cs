@@ -1,4 +1,4 @@
-﻿namespace task1
+﻿namespace Task1
 {
     /// <summary>
     /// value node of AST tree, implements IASTNode interface, stores integer value

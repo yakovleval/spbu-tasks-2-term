@@ -1,4 +1,4 @@
-﻿namespace task1
+﻿namespace Task1
 {
     /// <summary>
     /// interface of the AST node

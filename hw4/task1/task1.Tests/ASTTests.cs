@@ -2,7 +2,7 @@ using NUnit.Framework;
 using System.Data;
 
 
-namespace task1
+namespace Task1.Tests
 {
     [TestClass]
     public class ASTTests

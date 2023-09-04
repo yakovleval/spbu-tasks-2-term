@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace task1
+namespace Task1
 {
     /// <summary>
     /// operation node of AST tree, implements IASTNode inteface, stores the operation and two operands
