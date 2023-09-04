@@ -7,16 +7,16 @@
     {
         private class Node
         {
-            public Dictionary<char, Node> children = new();
-            public bool isKey = false;
-            public int keysNumberInSubtree = 0;
-            public int value = -1;
+            public Dictionary<char, Node> Children { get; set; } = new();
+            public bool IsKey { get; set; } = false;
+            public int KeysNumberInSubtree { get; set; } = 0;
+            public int Value { get; set; } = -1;
         }
         private Node root = new();
         /// <summary>
         /// number of keys in the Trie
         /// </summary>
-        public int Size { get { return root.keysNumberInSubtree; } }
+        public int Size { get { return root.KeysNumberInSubtree; } }
         public Trie() { }
         public void InitializeWithAllChars()
         {
@@ -40,18 +40,18 @@
             Node node = root;
             foreach (char c in key)
             {
-                if (!node.children.ContainsKey(c))
+                if (!node.Children.ContainsKey(c))
                 {
-                    node.children[c] = new Node();
+                    node.Children[c] = new Node();
                 }
 
-                node.keysNumberInSubtree++;
-                node = node.children[c];
+                node.KeysNumberInSubtree++;
+                node = node.Children[c];
             }
 
-            node.keysNumberInSubtree++;
-            node.isKey = true;
-            node.value = value;
+            node.KeysNumberInSubtree++;
+            node.IsKey = true;
+            node.Value = value;
             return true;
         }
         /// <summary>
@@ -65,13 +65,13 @@
 
             foreach (char c in key)
             {
-                if (!node.children.ContainsKey(c))
+                if (!node.Children.ContainsKey(c))
                 {
                     return false;
                 }
-                node = node.children[c];
+                node = node.Children[c];
             }
-            return node.isKey;
+            return node.IsKey;
         }
         /// <summary>
         /// Gets a value by a given key
@@ -85,14 +85,14 @@
 
             foreach (char c in key)
             {
-                if (!node.children.ContainsKey(c))
+                if (!node.Children.ContainsKey(c))
                 {
                     throw new KeyNotFoundException();
                 }
-                node = node.children[c];
+                node = node.Children[c];
             }
-            if (node.isKey)
-                return node.value;
+            if (node.IsKey)
+                return node.Value;
             throw new KeyNotFoundException();
         }
         /// <summary>
@@ -110,13 +110,13 @@
 
             foreach (char c in key)
             {
-                node.keysNumberInSubtree--;
-                node = node.children[c];
+                node.KeysNumberInSubtree--;
+                node = node.Children[c];
             }
 
-            node.keysNumberInSubtree--;
+            node.KeysNumberInSubtree--;
 
-            node.isKey = false;
+            node.IsKey = false;
             return true;
         }
     }
