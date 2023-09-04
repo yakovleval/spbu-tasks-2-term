@@ -10,7 +10,6 @@ namespace ProgressBar
         {
             InitializeComponent();
             myTimer.Tick += new EventHandler(TimerEventProcessor);
-
         }
 
         private void TimerEventProcessor(Object myObject,
@@ -19,7 +18,8 @@ namespace ProgressBar
             if (progressBar1.Value == 100)
             {
                 myTimer.Stop();
-                button1.Text = "Close";
+                button1.Enabled = true;
+                button1.Text = "close";
                 return;
             }
             progressBar1.Value += 10;
@@ -31,6 +31,7 @@ namespace ProgressBar
             {
                 myTimer.Interval = 500;
                 myTimer.Start();
+                button1.Enabled = false;
             }
             if (progressBar1.Value == 100)
             {
