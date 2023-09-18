@@ -28,13 +28,14 @@ namespace SkipList
 
         private Node head = new();
         private Node headOfFirstRow;
+        private int version = 0;
 
         public SkipList()
         {
             headOfFirstRow = head;
         }
-        public TElement this[int index] 
-        { 
+        public TElement this[int index]
+        {
             get
             {
                 if (index < 0 || index >= Count)
@@ -51,15 +52,15 @@ namespace SkipList
                     return currentNode.Key;
                 }
                 throw new IndexOutOfRangeException(nameof(index));
-            } 
-            set => throw new NotSupportedException(); 
+            }
+            set => throw new NotSupportedException();
         }
 
         public int Count { get; private set; } = 0;
 
         public bool IsReadOnly => false;
 
-        private KeyNode? _Add(Node currentNode, TElement item)
+        private KeyNode? RecursiveAdd(Node currentNode, TElement item)
         {
             while (currentNode.Next != null && currentNode.Next.Key.CompareTo(item) < 0)
             {
@@ -71,7 +72,7 @@ namespace SkipList
                 currentNode.Next = newNode;
                 return newNode;
             }
-            KeyNode? addedToLowerRow = _Add(currentNode.Down, item);
+            KeyNode? addedToLowerRow = RecursiveAdd(currentNode.Down, item);
             if (addedToLowerRow != null)
             {
                 Random coin = new();
@@ -88,7 +89,7 @@ namespace SkipList
 
         public void Add(TElement item)
         {
-            KeyNode? addedToLowerRow = _Add(head, item);
+            KeyNode? addedToLowerRow = RecursiveAdd(head, item);
             Random coin = new();
             int flipResult = coin.Next(2);
             if (flipResult == 1)
@@ -98,15 +99,17 @@ namespace SkipList
                 head = newStartNode;
             }
             Count++;
+            version++;
         }
 
         public void Clear()
         {
             head = new();
             Count = 0;
+            version++;
         }
 
-        private bool _Contains(Node currentNode, TElement item)
+        private bool RecursiveContains(Node currentNode, TElement item)
         {
             while (currentNode.Next != null && currentNode.Next.Key.CompareTo(item) < 0)
             {
@@ -116,14 +119,14 @@ namespace SkipList
             {
                 if (currentNode.Down == null)
                     return false;
-                return _Contains(currentNode.Down, item);
+                return RecursiveContains(currentNode.Down, item);
             }
             return true;
         }
 
         public bool Contains(TElement item)
         {
-            return _Contains(head, item);
+            return RecursiveContains(head, item);
         }
 
         public void CopyTo(TElement[] array, int arrayIndex)
@@ -138,7 +141,7 @@ namespace SkipList
                     list is greater than the available space 
                     from index to the end of the destination array
                     """);
-            
+
             KeyNode? currentNode = headOfFirstRow.Next;
             while (currentNode != null)
             {
@@ -150,12 +153,18 @@ namespace SkipList
 
         public IEnumerator<TElement> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return new SkipListEnumerator(this);
         }
 
         public int IndexOf(TElement item)
         {
-            throw new NotImplementedException();
+            KeyNode? currentNode = headOfFirstRow.Next;
+            for (int i = 0; currentNode != null; i++, currentNode = currentNode.Next)
+            {
+                if (currentNode.Key.CompareTo(item) == 0)
+                    return 0;
+            }
+            return -1;
         }
 
         public void Insert(int index, TElement item)
@@ -163,7 +172,7 @@ namespace SkipList
             throw new NotSupportedException();
         }
 
-        private bool _Remove(Node currentNode, TElement item)
+        private bool RecursiveRemove(Node currentNode, TElement item)
         {
             while (currentNode.Next != null && currentNode.Next.Key.CompareTo(item) < 0)
             {
@@ -177,33 +186,96 @@ namespace SkipList
             }
             if (currentNode.Down != null)
             {
-                deleted = _Remove(currentNode.Down, item);
+                deleted = RecursiveRemove(currentNode.Down, item);
             }
             return deleted;
         }
 
         public bool Remove(TElement item)
         {
-            bool deleted = _Remove(head, item);
+            bool deleted = RecursiveRemove(head, item);
             if (deleted)
             {
-                Count--;
                 if (head.Next == null && head.Down != null)
                 {
                     head = head.Down;
                 }
+                Count--;
+                version++;
             }
             return deleted;
         }
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            Remove(this[index]);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return (IEnumerator) GetEnumerator();
+        }
+
+        public class SkipListEnumerator : IEnumerator<TElement>
+        {
+            private readonly SkipList<TElement> list;
+            private Node? currentNode;
+            private int index;
+            private TElement? currentElement;
+            private readonly int version;
+
+            public SkipListEnumerator(SkipList<TElement> list)
+            {
+                this.list = list;
+                currentNode = list.headOfFirstRow;
+                index = -1;
+                version = list.version;
+            }
+
+            public TElement Current => currentElement!;
+
+            object IEnumerator.Current
+            {
+                get
+                {
+                    if (index == -1 || index == list.Count)
+                        throw new InvalidOperationException();
+                    return Current;
+                }
+            }
+
+            public void Dispose()
+            {
+
+            }
+
+            public bool MoveNext()
+            {
+                if (version != list.version)
+                {
+                    throw new InvalidOperationException("The collection was modified after the enumerator was created.");
+                }
+                KeyNode? nextNode = currentNode?.Next;
+                if (nextNode == null)
+                {
+                    return false;
+                }
+                currentElement = nextNode.Key;
+                currentNode = nextNode;
+                index++;
+                return true;
+            }
+
+            public void Reset()
+            {
+                if (version != list.version)
+                {
+                    throw new InvalidOperationException("The collection was modified after the enumerator was created.");
+                }
+                currentNode = list.headOfFirstRow;
+                index = -1;
+                currentElement = default;
+            }
         }
     }
 }
