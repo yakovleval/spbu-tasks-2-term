@@ -231,17 +231,17 @@ namespace SkipList
                 version = list.version;
             }
 
-            public TElement Current => currentElement!;
-
-            object IEnumerator.Current
+            public TElement Current
             {
                 get
                 {
                     if (index == -1 || index == list.Count)
                         throw new InvalidOperationException();
-                    return Current;
+                    return currentElement!;
                 }
             }
+
+            object? IEnumerator.Current => Current;
 
             public void Dispose()
             {

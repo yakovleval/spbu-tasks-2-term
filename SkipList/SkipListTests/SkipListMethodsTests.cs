@@ -1,6 +1,6 @@
 namespace SkipList.Tests
 {
-    public class Tests
+    public class SkipListMethodsTests
     {
         [Test]
         public void TestAddAndContains()
@@ -64,10 +64,10 @@ namespace SkipList.Tests
             {
                 result.Add(element);
             }
-            Assert.That(expectedOrder.Length, Is.EqualTo(result.Count));
+            Assert.That(result.Count, Is.EqualTo(expectedOrder.Length));
             for (int i = 0; i < result.Count; i++)
             {
-                Assert.That(expectedOrder[i], Is.EqualTo(result[i]));
+                Assert.That(result[i], Is.EqualTo(expectedOrder[i]));
             }
         }
 
@@ -85,6 +85,18 @@ namespace SkipList.Tests
             SkipList<int> list = new SkipList<int> { 5, 4, 3, 2, 1 };
             Assert.That(list.IndexOf(3), Is.EqualTo(2));
             Assert.That(list.IndexOf(0), Is.EqualTo(-1));
+        }
+
+        [Test]
+        public void TestClear()
+        {
+            SkipList<int> list = new SkipList<int> { 5, 4, 3, 2, 1 };
+            list.Clear();
+            Assert.That(list.Count, Is.EqualTo(0));
+            for (int i = 1; i <= 5; i++)
+            {
+                Assert.That(list.Contains(i), Is.False);
+            }
         }
     }
 }
