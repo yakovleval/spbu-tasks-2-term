@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using System.Reflection.Metadata.Ecma335;
 
 namespace SkipList
 {
-    internal class SkipList<TElement> : IList<TElement>
+    public class SkipList<TElement> : IList<TElement>
         where TElement : IComparable<TElement>
     {
         private class Node
@@ -45,7 +44,7 @@ namespace SkipList
                 if (headOfFirstRow.Next != null)
                 {
                     KeyNode currentNode = headOfFirstRow.Next;
-                    for (int i = 1; i < Count; i++)
+                    for (int i = 0; i < index; i++)
                     {
                         currentNode = currentNode.Next ?? throw new IndexOutOfRangeException(nameof(index));
                     }
@@ -162,7 +161,7 @@ namespace SkipList
             for (int i = 0; currentNode != null; i++, currentNode = currentNode.Next)
             {
                 if (currentNode.Key.CompareTo(item) == 0)
-                    return 0;
+                    return i;
             }
             return -1;
         }
@@ -213,7 +212,7 @@ namespace SkipList
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return (IEnumerator) GetEnumerator();
+            return (IEnumerator)GetEnumerator();
         }
 
         public class SkipListEnumerator : IEnumerator<TElement>
