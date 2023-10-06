@@ -115,13 +115,15 @@ public class SkipList<TElement> : IList<TElement>
     public void Add(TElement item)
     {
         KeyNode? addedToLowerRow = RecursiveAdd(head, item);
-        Random coin = new();
-        int flipResult = coin.Next(2);
-        if (flipResult == 1)
+        if (addedToLowerRow != null)
         {
-            KeyNode newKeyNode = new(item, null, addedToLowerRow);
-            Node newStartNode = new(newKeyNode, head);
-            head = newStartNode;
+            int flipResult = coin.Next(2);
+            if (flipResult == 1)
+            {
+                KeyNode newKeyNode = new(item, null, addedToLowerRow);
+                Node newStartNode = new(newKeyNode, head);
+                head = newStartNode;
+            }
         }
         Count++;
         version++;
