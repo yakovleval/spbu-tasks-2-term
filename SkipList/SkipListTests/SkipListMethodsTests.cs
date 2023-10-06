@@ -50,7 +50,7 @@ namespace SkipList.Tests
         }
 
         [TestCase(new int[] { }, new int[] { })]
-        [TestCase(new int[] { 2, 2, 1, 1, 3, 3 }, new int[] { 1, 1, 2, 2, 3, 3 })]
+        [TestCase(new int[] { 2, 2, 1, 1, 3, 3, 3, 3 }, new int[] { 1, 1, 2, 2, 3, 3, 3, 3 })]
         [TestCase(new int[] { 5, 4, 3, 2, 1 }, new int[] { 1, 2, 3, 4, 5 })]
         public void TestForEachLoop(int[] elementsToAdd, int[] expectedOrder)
         {
