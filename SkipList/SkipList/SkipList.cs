@@ -29,6 +29,7 @@ public class SkipList<TElement> : IList<TElement>
     private Node head = new();
     private Node headOfFirstRow;
     private int version = 0;
+    private static Random coin = new();
 
     public SkipList()
     {
@@ -76,7 +77,6 @@ public class SkipList<TElement> : IList<TElement>
         KeyNode? addedToLowerRow = RecursiveAdd(currentNode.Down, item);
         if (addedToLowerRow != null)
         {
-            Random coin = new();
             int flipResult = coin.Next(2);
             if (flipResult == 1)
             {
