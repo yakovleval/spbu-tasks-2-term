@@ -34,6 +34,7 @@ public class SkipList<TElement> : IList<TElement>
     {
         headOfFirstRow = head;
     }
+
     public TElement this[int index]
     {
         get
