@@ -16,6 +16,7 @@ public class SkipList<TElement> : IList<TElement>
             Down = down;
         }
     }
+
     private class KeyNode : Node
     {
         public TElement Key { get; init; }
