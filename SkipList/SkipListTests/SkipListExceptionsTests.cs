@@ -10,6 +10,7 @@ public class SkipListExceptionsTests
         Assert.Throws<IndexOutOfRangeException>(() => result = list[0]);
         Assert.Throws<IndexOutOfRangeException>(() => result = list[-1]);
     }
+
     [Test]
     public void TestCopyToIndexOutOfRangeException()
     {
@@ -18,6 +19,7 @@ public class SkipListExceptionsTests
         Assert.Throws<IndexOutOfRangeException>(() => list.CopyTo(array, array.Length));
         Assert.Throws<IndexOutOfRangeException>(() => list.CopyTo(array, -2));
     }
+
     [Test]
     public void TestCopyToNotEnoughSpace()
     {

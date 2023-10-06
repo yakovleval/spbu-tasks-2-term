@@ -5,7 +5,7 @@ public class EnumeratorTests
     [Test]
     public void TestMoveNextAndCurrent()
     {
-        SkipList<int> list = new SkipList<int> { 1, 2, 3, 4, 5 };
+        var list = new SkipList<int> { 1, 2, 3, 4, 5 };
         var enumerator = list.GetEnumerator();
         bool result = enumerator.MoveNext();
         Assert.That(result, Is.True);
@@ -15,7 +15,7 @@ public class EnumeratorTests
     [Test]
     public void TestMoveNextToEndOfList()
     {
-        SkipList<int> list = new SkipList<int> { };
+        var list = new SkipList<int> { };
         var enumerator = list.GetEnumerator();
         bool result = enumerator.MoveNext();
         Assert.That(result, Is.False);
@@ -24,7 +24,7 @@ public class EnumeratorTests
     [Test]
     public void TestMoveNextCurrentAtBeginning()
     {
-        SkipList<int> list = new SkipList<int> { 1, 2, 3 };
+        var list = new SkipList<int> { 1, 2, 3 };
         var enumerator = list.GetEnumerator();
         int result;
         Assert.Throws<InvalidOperationException>(() => result = enumerator.Current);
@@ -33,7 +33,7 @@ public class EnumeratorTests
     [Test]
     public void TestMoveNextCurrentAfterEndOfArray()
     {
-        SkipList<int> list = new SkipList<int> { };
+        var list = new SkipList<int> { };
         var enumerator = list.GetEnumerator();
         bool result = enumerator.MoveNext();
         Assert.That(result, Is.False);
@@ -44,7 +44,7 @@ public class EnumeratorTests
     [Test]
     public void TestIvalidateEnumeratorReturnsCurrent()
     {
-        SkipList<int> list = new SkipList<int> { 1, 2, 3 };
+        var list = new SkipList<int> { 1, 2, 3 };
         var enumerator = list.GetEnumerator();
         enumerator.MoveNext();
         list.Add(4);
@@ -54,16 +54,17 @@ public class EnumeratorTests
     [Test]
     public void TestMoveNextAfterCollectionChanged()
     {
-        SkipList<int> list = new SkipList<int> { 1, 2, 3 };
+        var list = new SkipList<int> { 1, 2, 3 };
         var enumerator = list.GetEnumerator();
         enumerator.MoveNext();
         list.Remove(3);
         Assert.Throws<InvalidOperationException>(() => enumerator.MoveNext());
     }
+
     [Test]
     public void TestReset()
     {
-        SkipList<int> list = new SkipList<int> { 1, 2, 3 };
+        var list = new SkipList<int> { 1, 2, 3 };
         var enumerator = list.GetEnumerator();
         enumerator.MoveNext();
         enumerator.Reset();

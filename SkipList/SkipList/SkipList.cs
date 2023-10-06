@@ -212,10 +212,7 @@ public class SkipList<TElement> : IList<TElement>
         Remove(this[index]);
     }
 
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return (IEnumerator)GetEnumerator();
-    }
+    IEnumerator IEnumerable.GetEnumerator() => (IEnumerator)GetEnumerator();
 
     public class SkipListEnumerator : IEnumerator<TElement>
     {

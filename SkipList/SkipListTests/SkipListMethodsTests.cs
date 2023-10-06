@@ -26,6 +26,7 @@ public class SkipListMethodsTests
         list.RemoveAt(2);
         Assert.That(list.Contains(2), Is.False);
     }
+
     [TestCase(new int[] { }, 0)]
     [TestCase(new int[] { 1 }, 1)]
     [TestCase(new int[] { 1, 2, 3, 4, 5 }, 5)]
@@ -79,6 +80,7 @@ public class SkipListMethodsTests
         list.CopyTo(array, 2);
         Assert.That(array, Is.EqualTo(new int[] { 0, 0, 1, 2, 3, 4, 5 }));
     }
+
     [Test]
     public void TestIndexOf()
     {
